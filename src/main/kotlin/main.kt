@@ -121,7 +121,7 @@ fun main() {
     noteService.add(Note(0, "Третья заметка", "Текст третьей заметки"))
 
     //get
-    println(noteService.get(mutableListOf(1, 2, 3)))
+    println(noteService.get(mutableListOf(10)))
 
     //getById
     println("Достаем заметки с id=2")
