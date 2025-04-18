@@ -32,6 +32,15 @@ class NoteServiceTest {
     }
 
     @Test
+    fun NotEdit() {
+        val service = NoteService<Note>()
+        service.add(Note(0, "Первая заметка", "Текст первой заметки"))
+        service.add(Note(0, "Вторая", "Текст первой заметки"))
+        val result = service.edit(Note(3, "Вторая заметка плюс", "Текст второй заметки плюс"))
+        assertEquals(180, result)
+    }
+
+    @Test
     fun get() {
         val service = NoteService<Note>()
         service.add(Note(0, "Первая заметка", "Текст первой заметки"))
@@ -51,6 +60,13 @@ class NoteServiceTest {
     }
 
     @Test
+    fun NotgetById() {
+        val service = NoteService<Note>()
+        val result = service.getById(2)
+        assertEquals(null, result?.id)
+    }
+
+    @Test
     fun delete() {
         val service = NoteService<Note>()
         service.add(Note(0, "Первая заметка", "Текст первой заметки"))
@@ -58,6 +74,13 @@ class NoteServiceTest {
         service.add(Note(0, "Вторая", "Текст первой заметки"))
         val result = service.delete(2)
         assertEquals(1, result)
+    }
+
+    @Test
+    fun NotDelete() {
+        val service = NoteService<Note>()
+        val result = service.delete(2)
+        assertEquals(180, result)
     }
 
     @Test
@@ -71,6 +94,13 @@ class NoteServiceTest {
     }
 
     @Test
+    fun NotDeleteComment() {
+        val service = NoteService<Comment>()
+        val result = service.deleteComment(2)
+        assertEquals(180, result)
+    }
+
+    @Test
     fun restoreComment() {
         val service = NoteService<Comment>()
         service.add(Comment(0, "1 заметка", 1))
@@ -79,6 +109,14 @@ class NoteServiceTest {
         service.deleteComment(2)
         val result = service.restoreComment(2)
         assertEquals(1, result)
+    }
+
+    @Test
+    fun NotRestoreComment() {
+        val service = NoteService<Comment>()
+        service.add(Comment(0, "1 заметка", 1))
+        val result = service.restoreComment(1)
+        assertEquals(183, result)
     }
 
     @Test
